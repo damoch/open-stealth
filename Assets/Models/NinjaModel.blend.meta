@@ -1,0 +1,413 @@
+fileFormatVersion: 2
+guid: be682c0fa24b6714fafdc7a0fdbe8876
+timeCreated: 1483714149
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: andzej
+    100002: Bone
+    100004: chest
+    100006: foot_L
+    100008: foot_R
+    100010: forearm_L
+    100012: forearm_R
+    100014: hand_L
+    100016: hand_R
+    100018: head
+    100020: heel_02_L
+    100022: heel_02_R
+    100024: heel_L
+    100026: heel_R
+    100028: hips
+    100030: metarig
+    100032: neck
+    100034: //RootNode
+    100036: pt_l
+    100038: pt_r
+    100040: shin_L
+    100042: shin_R
+    100044: shoulder_L
+    100046: shoulder_R
+    100048: spine
+    100050: thigh_L
+    100052: thigh_R
+    100054: toe_L
+    100056: toe_R
+    100058: upper_arm_L
+    100060: upper_arm_R
+    400000: andzej
+    400002: Bone
+    400004: chest
+    400006: foot_L
+    400008: foot_R
+    400010: forearm_L
+    400012: forearm_R
+    400014: hand_L
+    400016: hand_R
+    400018: head
+    400020: heel_02_L
+    400022: heel_02_R
+    400024: heel_L
+    400026: heel_R
+    400028: hips
+    400030: metarig
+    400032: neck
+    400034: //RootNode
+    400036: pt_l
+    400038: pt_r
+    400040: shin_L
+    400042: shin_R
+    400044: shoulder_L
+    400046: shoulder_R
+    400048: spine
+    400050: thigh_L
+    400052: thigh_R
+    400054: toe_L
+    400056: toe_R
+    400058: upper_arm_L
+    400060: upper_arm_R
+    4300000: andzej
+    7400000: Default Take
+    7400002: metarigAction
+    7400004: Walk
+    9500000: //RootNode
+    13700000: andzej
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 24
+      lastFrame: 84
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: andzej
+        weight: 1
+      - path: metarig
+        weight: 1
+      - path: metarig/Bone
+        weight: 1
+      - path: metarig/Bone/heel_L
+        weight: 1
+      - path: metarig/Bone/heel_L/foot_L
+        weight: 1
+      - path: metarig/Bone/heel_L/foot_L/toe_L
+        weight: 1
+      - path: metarig/Bone/heel_L/heel_02_L
+        weight: 1
+      - path: metarig/Bone/heel_L/pt_l
+        weight: 1
+      - path: metarig/Bone/heel_R
+        weight: 1
+      - path: metarig/Bone/heel_R/foot_R
+        weight: 1
+      - path: metarig/Bone/heel_R/foot_R/toe_R
+        weight: 1
+      - path: metarig/Bone/heel_R/heel_02_R
+        weight: 1
+      - path: metarig/Bone/heel_R/pt_r
+        weight: 1
+      - path: metarig/Bone/hips
+        weight: 1
+      - path: metarig/Bone/hips/spine
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/neck
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/neck/head
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_L
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_L/upper_arm_L
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_L/upper_arm_L/forearm_L
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_L/upper_arm_L/forearm_L/hand_L
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_R
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_R/upper_arm_R
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_R/upper_arm_R/forearm_R
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_R/upper_arm_R/forearm_R/hand_R
+        weight: 1
+      - path: metarig/Bone/hips/thigh_L
+        weight: 1
+      - path: metarig/Bone/hips/thigh_L/shin_L
+        weight: 1
+      - path: metarig/Bone/hips/thigh_R
+        weight: 1
+      - path: metarig/Bone/hips/thigh_R/shin_R
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarigAction
+      takeName: metarigAction
+      firstFrame: 0
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: andzej
+        weight: 1
+      - path: metarig
+        weight: 1
+      - path: metarig/Bone
+        weight: 1
+      - path: metarig/Bone/heel_L
+        weight: 1
+      - path: metarig/Bone/heel_L/foot_L
+        weight: 1
+      - path: metarig/Bone/heel_L/foot_L/toe_L
+        weight: 1
+      - path: metarig/Bone/heel_L/heel_02_L
+        weight: 1
+      - path: metarig/Bone/heel_L/pt_l
+        weight: 1
+      - path: metarig/Bone/heel_R
+        weight: 1
+      - path: metarig/Bone/heel_R/foot_R
+        weight: 1
+      - path: metarig/Bone/heel_R/foot_R/toe_R
+        weight: 1
+      - path: metarig/Bone/heel_R/heel_02_R
+        weight: 1
+      - path: metarig/Bone/heel_R/pt_r
+        weight: 1
+      - path: metarig/Bone/hips
+        weight: 1
+      - path: metarig/Bone/hips/spine
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/neck
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/neck/head
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_L
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_L/upper_arm_L
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_L/upper_arm_L/forearm_L
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_L/upper_arm_L/forearm_L/hand_L
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_R
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_R/upper_arm_R
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_R/upper_arm_R/forearm_R
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_R/upper_arm_R/forearm_R/hand_R
+        weight: 1
+      - path: metarig/Bone/hips/thigh_L
+        weight: 1
+      - path: metarig/Bone/hips/thigh_L/shin_L
+        weight: 1
+      - path: metarig/Bone/hips/thigh_R
+        weight: 1
+      - path: metarig/Bone/hips/thigh_R/shin_R
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk
+      takeName: Default Take
+      firstFrame: 24
+      lastFrame: 84
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: andzej
+        weight: 1
+      - path: metarig
+        weight: 1
+      - path: metarig/Bone
+        weight: 1
+      - path: metarig/Bone/heel_L
+        weight: 1
+      - path: metarig/Bone/heel_L/foot_L
+        weight: 1
+      - path: metarig/Bone/heel_L/foot_L/toe_L
+        weight: 1
+      - path: metarig/Bone/heel_L/heel_02_L
+        weight: 1
+      - path: metarig/Bone/heel_L/pt_l
+        weight: 1
+      - path: metarig/Bone/heel_R
+        weight: 1
+      - path: metarig/Bone/heel_R/foot_R
+        weight: 1
+      - path: metarig/Bone/heel_R/foot_R/toe_R
+        weight: 1
+      - path: metarig/Bone/heel_R/heel_02_R
+        weight: 1
+      - path: metarig/Bone/heel_R/pt_r
+        weight: 1
+      - path: metarig/Bone/hips
+        weight: 1
+      - path: metarig/Bone/hips/spine
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/neck
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/neck/head
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_L
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_L/upper_arm_L
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_L/upper_arm_L/forearm_L
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_L/upper_arm_L/forearm_L/hand_L
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_R
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_R/upper_arm_R
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_R/upper_arm_R/forearm_R
+        weight: 1
+      - path: metarig/Bone/hips/spine/chest/shoulder_R/upper_arm_R/forearm_R/hand_R
+        weight: 1
+      - path: metarig/Bone/hips/thigh_L
+        weight: 1
+      - path: metarig/Bone/hips/thigh_L/shin_L
+        weight: 1
+      - path: metarig/Bone/hips/thigh_R
+        weight: 1
+      - path: metarig/Bone/hips/thigh_R/shin_R
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
