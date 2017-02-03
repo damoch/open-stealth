@@ -7,19 +7,19 @@ public class SaveTest {
 
 	[Test]
 	public void saveTest() {
-        SaveDataDTO dto = new SaveDataDTO("toom");
+        SaveDataDto dto = new SaveDataDto("toom");
 
-        SaveController.saveGame("key", dto);
-        Assert.AreEqual(SaveController.savedGameExists("key"), true);
+        SaveController.SaveGame("key", dto);
+        Assert.AreEqual(SaveController.SavedGameExists("key"), true);
     }
 
     [Test]
     public void loadTest()
     {
-        var dto = new SaveDataDTO("toom");
-        SaveController.saveGame("key", dto);
+        var dto = new SaveDataDto("toom");
+        SaveController.SaveGame("key", dto);
 
-        var dto2 = SaveController.getSavedGame("key");
+        var dto2 = SaveController.GetSavedGame("key");
 
         Assert.AreEqual(dto.RoomName, dto2.RoomName);
     }

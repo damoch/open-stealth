@@ -11,7 +11,7 @@ public class GameControllerTest
     public void alertTest()
     {
         GameController gc = new GameController();
-        gc.setGlobalAlert();
+        gc.SetGlobalAlert();
     }
 
     [Test]
@@ -19,7 +19,7 @@ public class GameControllerTest
     {
         GameController gc = new GameController();
         gc.Start();
-        Assert.AreEqual(GameState.PAUSED, GameController.gameState);
+        Assert.AreEqual(GameState.Paused, GameController.GameState);
     }
 
     [Test]
@@ -27,8 +27,8 @@ public class GameControllerTest
     {
         GameController gc = new GameController();
         gc.Start();
-        gc.setGameRunning();
-        Assert.AreEqual(GameState.RUNNING, GameController.gameState);
+        gc.SetGameRunning();
+        Assert.AreEqual(GameState.Running, GameController.GameState);
     }
 
     [Test]
@@ -36,7 +36,7 @@ public class GameControllerTest
     public void loadNullGameTest()
     {
         GameController gc = new GameController();
-        gc.loadGame(null);
+        gc.LoadGame(null);
     }
 
     [Test]
@@ -45,7 +45,7 @@ public class GameControllerTest
         Dictionary<string, bool> items = new Dictionary<string, bool>();
         items.Add("foo", false);
         items.Add("bar", true);
-        var result = ItemsTools.countScore(items);
+        var result = ItemsTools.CountScore(items);
         Assert.AreEqual(1, result);
     }
 
@@ -53,14 +53,14 @@ public class GameControllerTest
     public void getScoreEmptyTest()
     {
         Dictionary<string, bool> items = new Dictionary<string, bool>();
-        var result = ItemsTools.countScore(items);
+        var result = ItemsTools.CountScore(items);
         Assert.AreEqual(0, result);
     }
 
     [Test]
     public void getScoreNullTest()
     {
-        var result = ItemsTools.countScore(null);
+        var result = ItemsTools.CountScore(null);
         Assert.AreEqual(0, result);
     }
 }
