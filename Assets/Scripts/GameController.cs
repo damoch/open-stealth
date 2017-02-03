@@ -10,7 +10,6 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 
     static GameObject[] guards;
-    GuardController guard;
 
 
     public static GameState gameState { get; set; }
@@ -18,11 +17,6 @@ public class GameController : MonoBehaviour {
 
     public static Dictionary<string, bool> itemsAquired { get; set; }
 
-    public AudioClip alarmSound;
-    public AudioClip backgroundMusic;
-
-    public GameObject gameOverPanel;
-    public GameObject gameFinishedPanel;
 
     public void Start () {
         guards = GameObject.FindGameObjectsWithTag("Guard");
@@ -38,7 +32,6 @@ public class GameController : MonoBehaviour {
         {
             itemsAquired = ItemsTools.getItemsList();
         }
-        SoundManager.instance.ChangeMusic(backgroundMusic);
 	}
 	
     public void setGlobalAlert()
@@ -52,7 +45,6 @@ public class GameController : MonoBehaviour {
                     guardController.setAlert(player.transform.position);
 
             }
-        SoundManager.instance.ChangeMusic(alarmSound);
         }
 
     }
@@ -70,14 +62,6 @@ public class GameController : MonoBehaviour {
         }
         
     }
-
-    IEnumerator checkFieldOfViesAgain()
-    {
-        yield return new WaitForSeconds(5f);
-        checkForOtherGuardsState();
-
-    }
-
     bool anyGuardSeesPlayer()
     {
         if (guards != null)
@@ -117,11 +101,6 @@ public class GameController : MonoBehaviour {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
-    public static void ExitGame()
-    {
-        Application.Quit();
-    }
-
     public void setGlobalCalm()
     {
         if (guards != null)
@@ -133,7 +112,6 @@ public class GameController : MonoBehaviour {
                     guardController.setCalm(guardController.navPoint.transform.position);
 
             }
-            SoundManager.instance.ChangeMusic(backgroundMusic);
         }
     }
 
@@ -190,7 +168,6 @@ public class GameController : MonoBehaviour {
     internal void GameFinished()
     {
         setGamePaused();
-        gameFinishedPanel.SetActive(true);
     }
 
     SaveDataDTO getGameData()
@@ -206,7 +183,6 @@ public class GameController : MonoBehaviour {
     public void GameOver()
     {
         setGamePaused();
-        gameOverPanel.SetActive(true);
     }
 
     void setGameData(SaveDataDTO dto, string saveName)

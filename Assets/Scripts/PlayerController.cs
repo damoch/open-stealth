@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour {
         healthPoints = 100f;
     }
 	
-	// Update is called once per frame
 	void Update () {
         float x;
         float z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
@@ -41,11 +40,9 @@ public class PlayerController : MonoBehaviour {
 
         if (cameraState.Equals(PlayerCameraState.THIRDPERSON))
         {
-            //transform.Rotate(0, x, 0);
             x = Input.GetAxis("Horizontal") * Time.deltaTime * 3.0f;
             transform.Translate(x, 0, z);
 
-            //Kierunek
 
             if(z > 0 && !direction.Equals(Direction.NORTH))
             {
@@ -99,24 +96,10 @@ public class PlayerController : MonoBehaviour {
                 firstPerson.enabled = false;
                 thirdPerson.enabled = true;
                 cameraState = PlayerCameraState.THIRDPERSON;
-                setCrosshair(true);
                 break;
         }
     }
-    void setCrosshair(bool draw)
-    {
-        if (draw)
-        {
-            float xMin = (Screen.width / 2) - (crosshairImage.width / 2);
-            float yMin = (Screen.height / 2) - (crosshairImage.height / 2);
-            GUI.DrawTexture(new Rect(xMin, yMin, crosshairImage.width, crosshairImage.height), crosshairImage);
-        }
-    }
 
-    void setAngle(float angle)
-    {
-        transform.rotation = Quaternion.Euler(0, angle, 0);
-    }
 
     public bool hasKeyToDoor(string keyCode)
     {
@@ -132,24 +115,33 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Projectile")
+
+        switch (other.tag)
         {
-            healthPoints -= 25f;
-            if (healthPoints <= 0)
-            {
-                gameController.GameOver();
-            }
-        }
-        else if(other.tag == "Goal")
-        {
-            gameController.GameFinished();
-        }
-        if (other.GetComponent<KeyItemController>() != null)
-        {
-            KeyItemController key = other.GetComponent<KeyItemController>();
-            keys.Add(key);
-            GameController.setItemFlag(key.keyCode);
-            Destroy(other.gameObject);
+            case "Projectile":
+
+                healthPoints -= 25f;
+                if (healthPoints <= 0)
+                {
+                    gameController.GameOver();
+                }
+                break;
+
+            case "Goal":
+
+                gameController.GameFinished();
+                break;
+
+            case "Item":
+
+                KeyItemController key = other.GetComponent<KeyItemController>();
+                keys.Add(key);
+                GameController.setItemFlag(key.keyCode);
+                Destroy(other.gameObject);
+                break;
+
+            default:
+                break;
         }
     }
 }
