@@ -9,19 +9,16 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
-    static GameObject[] _guards;
 
 
     public static GameState GameState { get; set; }
-    public static GameObject Player { get; set; }
 
     public static Dictionary<string, bool> ItemsAquired { get; set; }
 
-
-    public void Start () {
-        _guards = GameObject.FindGameObjectsWithTag("Guard");
-        Player = GameObject.FindGameObjectsWithTag("PlayerObject")[0];
-
+    private RoomManager _roomManager;
+    public void Start ()
+    {
+        _roomManager = gameObject.GetComponent<RoomManager>();
         string continueFlag = SaveController.GetContinueFlag();
         if (!continueFlag.Equals("NONE"))
         {
@@ -34,87 +31,13 @@ public class GameController : MonoBehaviour {
         }
 	}
 	
-    public void SetGlobalAlert()
-    {
-        if (_guards != null)
-        {
-            foreach (GameObject guard in _guards)
-            {
-                var guardController = guard.GetComponent<GuardController>();
-                if (!guardController.State.Equals(GuardState.Alerted))
-                    guardController.SetAlert(Player.transform.position);
-
-            }
-        }
-
-    }
-
-    public void CheckForOtherGuardsState()
-    {
-
-        if (AnyGuardSeesPlayer())
-        {
-            SetGlobalAlert();
-        }
-        else
-        {
-            SetGlobalSuspicious();
-        }
-        
-    }
-    bool AnyGuardSeesPlayer()
-    {
-        if (_guards != null)
-        {
-            foreach (GameObject guard in _guards)
-            {
-                var guardController = guard.GetComponent<GuardController>();
-                if (guardController.FieldOfView.PlayerInRange)
-                {
-                    return true;
-
-                }
-            }
-        }
-        return false;
-    }
-
-
-    
-    public void SetGlobalSuspicious()
-    {
-        StartCoroutine("Evasion");
-        if (_guards != null)
-        {
-            foreach (GameObject guard in _guards)
-            {
-                var guardController = guard.GetComponent<GuardController>();
-                if (!guardController.State.Equals(GuardState.Suspicious))
-                    guardController.SetSuspicious(Player.transform.position, true);
-
-            }
-        }
-    }
-
+  
     public static void RestartRoom()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
-    public void SetGlobalCalm()
-    {
-        if (_guards != null)
-        {
-            foreach (GameObject guard in _guards)
-            {
-                var guardController = guard.GetComponent<GuardController>();
-                if (!guardController.State.Equals(GuardState.Calm))
-                    guardController.SetCalm(guardController.NavPoint != null ? guardController.NavPoint.transform.position 
-                        : guardController.transform.position);
 
-            }
-        }
-    }
 
     public void SaveGame(string saveName)
     {
@@ -131,20 +54,7 @@ public class GameController : MonoBehaviour {
             throw new UnityException("No save data!");
     }
 
-    IEnumerator Evasion()
-    {
-        yield return new WaitForSeconds(5f);
-        if (AnyGuardSeesPlayer())
-        {
-            SetGlobalAlert();
 
-        }
-        else
-        {
-            SetGlobalCalm();
-        }
-
-    }
 
     public void SetGamePaused()
     {
@@ -172,11 +82,8 @@ public class GameController : MonoBehaviour {
 
     SaveDataDto GetGameData()
     {
-        var dto = new SaveDataDto();
-        dto.RoomName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        dto.PlayerPosition = Player.transform.position;
+        var dto = _roomManager.GetRoomData();
         dto.ItemsAquired = ItemsAquired;
-        dto.Items = Player.GetComponent<PlayerController>().Keys;
         return dto;
     }
 
@@ -195,10 +102,9 @@ public class GameController : MonoBehaviour {
         else
         {
             SaveController.SetContinueFlag("NONE");
-            Player.transform.position = dto.PlayerPosition;
-            Player.GetComponent<PlayerController>().Keys = dto.Items;
             ItemsAquired = dto.ItemsAquired;
             ItemsTools.SetupItemsForScene(ItemsAquired);
+            _roomManager.SetRoomData(dto);
         }
 
     }
@@ -206,5 +112,21 @@ public class GameController : MonoBehaviour {
     public static void SetItemFlag(string key)
     {
         ItemsAquired[key] = true;
+    }
+
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.F5))
+        {
+            SaveGame("QUICK");
+            Debug.Log("Game saved");
+        }
+
+        if (Input.GetKey(KeyCode.F6))
+        {
+            LoadGame("QUICK");
+            Debug.Log("Game loaded");
+        }
     }
 }

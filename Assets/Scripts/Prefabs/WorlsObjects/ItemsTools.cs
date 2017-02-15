@@ -8,15 +8,19 @@ public class ItemsTools  {
         Dictionary<string, bool> items = new Dictionary<string, bool>();
 
         //TODO - that dictionary should be parsable
-        items.Add("LEVEL1", false);
-        items.Add("LEVEL2", false);
-        items.Add("LEVEL3", false);
+     //   items.Add("LEVEL1", false);
+     //   items.Add("LEVEL2", false);
+     //   items.Add("LEVEL3", false);
 
         return items;
     }
 
     public static void SetupItemsForScene(Dictionary<string, bool> items)
     {
+        if (items == null || items.Count==0)
+        {
+            return;
+        }
         var itemObjects = GameObject.FindGameObjectsWithTag("Item");
 
         for(int i = 0; i<itemObjects.Length; i++)

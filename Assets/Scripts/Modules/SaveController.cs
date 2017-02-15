@@ -7,11 +7,11 @@ using MiniJSON;
 
 public class SaveController : MonoBehaviour {
 
-    static string _user = "USER";
-    static string _items = "ITEMS";
-    static string _continue = "CONTINUE";
-    static string _options = "OPTIONS";
-    static string _none = "NONE";
+    public static string User = "USER";
+    public static string Items = "ITEMS";
+    public static string Continue = "CONTINUE";
+    public static string Options = "OPTIONS";
+    public static string None = "NONE";
 
     public static bool SavedGameExists(string key)
     {
@@ -20,12 +20,12 @@ public class SaveController : MonoBehaviour {
 
     public static string GetUserName()
     {
-        return SavedGameExists(_user) ? PlayerPrefs.GetString(_user) : _none;
+        return SavedGameExists(User) ? PlayerPrefs.GetString(User) : None;
     }
 
     public static void SetUserName(string name)
     {
-        PlayerPrefs.SetString(_user, name);
+        PlayerPrefs.SetString(User, name);
     }
 
     public static void SaveGame(string key, SaveDataDto save)
@@ -33,14 +33,14 @@ public class SaveController : MonoBehaviour {
         string saveData = JsonUtility.ToJson(save);
         string itemData = Json.Serialize(save.ItemsAquired);
         PlayerPrefs.SetString(key, saveData);
-        PlayerPrefs.SetString(key + _items, itemData);
+        PlayerPrefs.SetString(key + Items, itemData);
     }
 
 
     public static SaveDataDto GetSavedGame(string key)
     {
         string saveData = PlayerPrefs.GetString(key);
-        string itemData = PlayerPrefs.GetString(key + _items);
+        string itemData = PlayerPrefs.GetString(key + Items);
         SaveDataDto save = JsonUtility.FromJson<SaveDataDto>(saveData);
         var items = Json.Deserialize(itemData);
         Dictionary<string, bool> itemsDict = ToDictionary(items);
@@ -68,14 +68,14 @@ public class SaveController : MonoBehaviour {
 
     internal static void SetContinueFlag(string saveName)
     {
-        PlayerPrefs.SetString(_continue, saveName);
+        PlayerPrefs.SetString(Continue, saveName);
     }
     public static string GetContinueFlag()
     {
-        if (!PlayerPrefs.HasKey(_continue))
+        if (!PlayerPrefs.HasKey(Continue))
         {
-            return _none;
+            return None;
         }
-        return PlayerPrefs.GetString(_continue);
+        return PlayerPrefs.GetString(Continue);
     }
 }

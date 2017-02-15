@@ -10,7 +10,7 @@ public class GuardController : MonoBehaviour
     private IEnumerator _evasionHandle;
     public FieldOfViewController FieldOfView;
     private Light _fieldOfViewIndicator;
-    private GameController _gameController;
+    private RoomManager _roomManager;
     private GameObject _model;
     private NavMeshAgent _navAgent;
     public NavigationPoint NavPoint;
@@ -26,7 +26,7 @@ public class GuardController : MonoBehaviour
         FieldOfView = transform.GetChild(2).GetComponent<FieldOfViewController>();
         _model = transform.GetChild(0).gameObject;
         _rifle = transform.GetChild(4);
-        _gameController = GameObject.FindGameObjectWithTag("Controller").GetComponent<GameController>();
+        _roomManager = GameObject.FindGameObjectWithTag("Controller").GetComponent<RoomManager>();
         _evasionHandle = Evasion();
 
         GoToWaypoint();
@@ -65,7 +65,7 @@ public class GuardController : MonoBehaviour
 
                 case GuardState.Alerted:
                     if (!FieldOfView.PlayerInRange)
-                        _gameController.CheckForOtherGuardsState();
+                        _roomManager.CheckForOtherGuardsState();
                     else
                         _navAgent.Stop();
                     break;
@@ -78,8 +78,8 @@ public class GuardController : MonoBehaviour
     {
         RaycastHit hit;
         var origin = new Vector3(_model.transform.position.x, _model.transform.position.y, transform.position.z);
-        var ray = new Ray(origin, GameController.Player.transform.position - origin);
-        Debug.DrawRay(origin, GameController.Player.transform.position - origin);
+        var ray = new Ray(origin, RoomManager.Player.transform.position - origin);
+        Debug.DrawRay(origin, RoomManager.Player.transform.position - origin);
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             if (hit.collider.tag == "PlayerObject")
@@ -116,7 +116,7 @@ public class GuardController : MonoBehaviour
         State = GuardState.Alerted;
         _fieldOfViewIndicator.color = Color.red;
         GoToPosition(alertPosition);
-        _gameController.CheckForOtherGuardsState();
+        _roomManager.CheckForOtherGuardsState();
     }
 
     private void GoToWaypoint()
@@ -144,7 +144,7 @@ public class GuardController : MonoBehaviour
         {
             if (State.Equals(GuardState.Alerted))
             {
-                transform.LookAt(GameController.Player.transform);
+                transform.LookAt(RoomManager.Player.transform);
                 ShootBullet();
             }
             yield return new WaitForSeconds(Random.Range(0.2f, 0.7f));

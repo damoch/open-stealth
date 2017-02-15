@@ -10,25 +10,8 @@ public class GameControllerTest
     [Test]
     public void alertTest()
     {
-        GameController gc = new GameController();
+        RoomManager gc = new RoomManager();
         gc.SetGlobalAlert();
-    }
-
-    [Test]
-    public void pauseTest()
-    {
-        GameController gc = new GameController();
-        gc.Start();
-        Assert.AreEqual(GameState.Paused, GameController.GameState);
-    }
-
-    [Test]
-    public void runTest()
-    {
-        GameController gc = new GameController();
-        gc.Start();
-        gc.SetGameRunning();
-        Assert.AreEqual(GameState.Running, GameController.GameState);
     }
 
     [Test]
