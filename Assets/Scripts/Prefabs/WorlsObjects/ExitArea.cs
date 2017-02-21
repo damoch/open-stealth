@@ -5,7 +5,7 @@ using UnityEditor.SceneManagement;
 #endif
 using UnityEngine;
 
-public class ExitAreaController : MonoBehaviour {
+public class ExitArea : MonoBehaviour {
 
     public string NextRoom { get; set; }
 

@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerController : MonoBehaviour {
+public class Player : MonoBehaviour {
 
     public PlayerCameraState CameraState { get; set; }
-    public List<KeyItemController> Keys { get; set; }
+    public List<KeyItem> Keys { get; set; }
     GameController _gameController;
     Camera _firstPerson;
     Camera _thirdPerson;
@@ -16,8 +16,8 @@ public class PlayerController : MonoBehaviour {
     float _healthPoints;
     void Start () {
         _gameController = GameObject.FindGameObjectWithTag("Controller").GetComponent<GameController>();
-        Keys = new List<KeyItemController>();
-        Keys.Add(new KeyItemController("NONE"));
+        Keys = new List<KeyItem>();
+        Keys.Add(new KeyItem("NONE"));
         _thirdPerson = transform.GetChild(1).gameObject.GetComponent<Camera>();
         _firstPerson = GetComponent<Camera>();
         _model = transform.GetChild(2).gameObject;
@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour {
 
     public bool HasKeyToDoor(string keyCode)
     {
-        foreach(KeyItemController key in Keys)
+        foreach(KeyItem key in Keys)
         {
             if (key.IsThisKeyCode(keyCode))
             {
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour {
 
             case "Item":
 
-                var key = other.GetComponent<KeyItemController>();
+                var key = other.GetComponent<KeyItem>();
                 Keys.Add(key);
                 GameController.SetItemFlag(key.KeyCode);
                 Destroy(other.gameObject);

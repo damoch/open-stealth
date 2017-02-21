@@ -23,7 +23,7 @@ public class SaveDataDto
     private Dictionary<string, bool> _itemsAquired;
 
     [SerializeField]
-    private List<KeyItemController> _items;
+    private List<KeyItem> _items;
 
 
     //Unity ma problem z serializacją prywatnych propertiesów, dlatego tak jest
@@ -65,7 +65,7 @@ public class SaveDataDto
         }
     }
 
-    public List<KeyItemController> Items
+    public List<KeyItem> Items
     {
         get
         {

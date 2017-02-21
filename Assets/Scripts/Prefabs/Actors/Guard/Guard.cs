@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class GuardController : MonoBehaviour
+public class Guard : MonoBehaviour
 {
     private bool _evasing;
     private IEnumerator _evasionHandle;
-    public FieldOfViewController FieldOfView;
+    public FieldOfView FieldOfView;
     private Light _fieldOfViewIndicator;
     private RoomManager _roomManager;
     private GameObject _model;
@@ -16,16 +16,16 @@ public class GuardController : MonoBehaviour
     public NavigationPoint NavPoint;
     private Vector3 _playerLastKnownPosition;
     public GameObject Projectile;
-    private Transform _rifle;
+    private Rifle _rifle;
     public GuardState State { get; set; }
 
     private void Start()
     {
         _navAgent = GetComponent<NavMeshAgent>();
         _fieldOfViewIndicator = transform.GetChild(1).GetComponent<Light>();
-        FieldOfView = transform.GetChild(2).GetComponent<FieldOfViewController>();
+        FieldOfView = transform.GetChild(2).GetComponent<FieldOfView>();
         _model = transform.GetChild(0).gameObject;
-        _rifle = transform.GetChild(4);
+        _rifle = transform.GetChild(4).GetComponent<Rifle>();
         _roomManager = GameObject.FindGameObjectWithTag("Controller").GetComponent<RoomManager>();
         _evasionHandle = Evasion();
 
@@ -82,7 +82,7 @@ public class GuardController : MonoBehaviour
         Debug.DrawRay(origin, RoomManager.Player.transform.position - origin);
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-            if (hit.collider.tag == "PlayerObject")
+            if (hit.collider.tag.Equals("PlayerObject"))
             {
                 if (_evasing)
                 {
@@ -104,7 +104,9 @@ public class GuardController : MonoBehaviour
     public void SetSuspicious(Vector3 position, bool isGlobal)
     {
         if (!isGlobal)
+        {
             StartCoroutine(_evasionHandle);
+        }
         GoToPosition(position);
         State = GuardState.Suspicious;
         _fieldOfViewIndicator.color = Color.yellow;
@@ -122,7 +124,9 @@ public class GuardController : MonoBehaviour
     private void GoToWaypoint()
     {
         if (!State.Equals(GuardState.Suspicious) && NavPoint != null)
+        {
             GoToPosition(NavPoint.GetPosition());
+        }
     }
 
     private void GoToPosition(Vector3 position)
@@ -145,19 +149,11 @@ public class GuardController : MonoBehaviour
             if (State.Equals(GuardState.Alerted))
             {
                 transform.LookAt(RoomManager.Player.transform);
-                ShootBullet();
+                _rifle.ShootBullet();
             }
             yield return new WaitForSeconds(Random.Range(0.2f, 0.7f));
         }
     }
 
-    private void ShootBullet()
-    {
-        var bullet = Instantiate(Projectile,
-            _rifle.position,
-            _rifle.rotation);
 
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
-        Destroy(bullet, 2.0f);
-    }
 }

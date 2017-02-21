@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorAreaController : MonoBehaviour {
+public class DoorArea : MonoBehaviour {
     string _requiredKeyCode;
     ExitController _exit;
 
@@ -18,7 +18,7 @@ public class DoorAreaController : MonoBehaviour {
         switch (other.tag)
         {
             case "PlayerObject":
-                var player = other.gameObject.GetComponent<PlayerController>();
+                var player = other.gameObject.GetComponent<Player>();
                 if (_requiredKeyCode != null && player.HasKeyToDoor(_requiredKeyCode))
                 {
                     _exit.OpenDoor();

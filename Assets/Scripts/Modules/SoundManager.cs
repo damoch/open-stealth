@@ -11,7 +11,6 @@ public class SoundManager : MonoBehaviour {
     public float LowPitchRange = .95f;
     public float HighPitchRange = 1.05f;
     
-    // Use this for initialization
     void Awake()
     {
         if (Instance == null)

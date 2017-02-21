@@ -21,7 +21,7 @@ public class ExitController : MonoBehaviour {
         _doorState = DoorState.Closed;
         _doorLight = transform.GetChild(1).GetComponent<Light>();
 
-        GetComponentInChildren<ExitAreaController>().NextRoom = NextScene == null ? "SAME_ROOM" : NextScene;
+        GetComponentInChildren<ExitArea>().NextRoom = NextScene == null ? "SAME_ROOM" : NextScene;
     }
 
     private void Update()

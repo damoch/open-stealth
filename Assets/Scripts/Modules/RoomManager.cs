@@ -21,7 +21,7 @@ public class RoomManager : MonoBehaviour {
         {
             foreach (GameObject guard in _guards)
             {
-                var guardController = guard.GetComponent<GuardController>();
+                var guardController = guard.GetComponent<Guard>();
                 if (!guardController.State.Equals(GuardState.Alerted))
                     guardController.SetAlert(Player.transform.position);
 
@@ -49,7 +49,7 @@ public class RoomManager : MonoBehaviour {
         {
             foreach (GameObject guard in _guards)
             {
-                var guardController = guard.GetComponent<GuardController>();
+                var guardController = guard.GetComponent<Guard>();
                 if (guardController.FieldOfView.PlayerInRange)
                 {
                     return true;
@@ -69,7 +69,7 @@ public class RoomManager : MonoBehaviour {
         {
             foreach (GameObject guard in _guards)
             {
-                var guardController = guard.GetComponent<GuardController>();
+                var guardController = guard.GetComponent<Guard>();
                 if (!guardController.State.Equals(GuardState.Suspicious))
                     guardController.SetSuspicious(Player.transform.position, true);
 
@@ -82,7 +82,7 @@ public class RoomManager : MonoBehaviour {
         {
             foreach (GameObject guard in _guards)
             {
-                var guardController = guard.GetComponent<GuardController>();
+                var guardController = guard.GetComponent<Guard>();
                 if (!guardController.State.Equals(GuardState.Calm))
                     guardController.SetCalm(guardController.NavPoint != null ? guardController.NavPoint.transform.position
                         : guardController.transform.position);
@@ -109,13 +109,13 @@ public class RoomManager : MonoBehaviour {
         var dto = new SaveDataDto();
         dto.RoomName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         dto.PlayerPosition = Player.transform.position;
-        dto.Items = Player.GetComponent<PlayerController>().Keys;
+        dto.Items = Player.GetComponent<Player>().Keys;
         return dto;
     }
 
     public void SetRoomData(SaveDataDto dto)
     {
         Player.transform.position = dto.PlayerPosition;
-        Player.GetComponent<PlayerController>().Keys = dto.Items;
+        Player.GetComponent<Player>().Keys = dto.Items;
     }
 }

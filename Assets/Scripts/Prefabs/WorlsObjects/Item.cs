@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ItemController : MonoBehaviour {
+public abstract class Item : MonoBehaviour {
     public string KeyCode;
 
     public abstract bool IsThisKeyCode(string code);

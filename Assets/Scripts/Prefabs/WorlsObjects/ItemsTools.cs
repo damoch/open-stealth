@@ -26,7 +26,7 @@ public class ItemsTools  {
         for(int i = 0; i<itemObjects.Length; i++)
         {
             var go = itemObjects[i];
-            var ic = go.GetComponent<ItemController>();
+            var ic = go.GetComponent<Item>();
             string code = ic.KeyCode;
 
             if (items[code])

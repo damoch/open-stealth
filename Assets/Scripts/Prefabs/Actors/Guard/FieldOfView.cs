@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FieldOfViewController : MonoBehaviour {
+public class FieldOfView : MonoBehaviour {
 
     public bool PlayerInRange { get; set; }
 

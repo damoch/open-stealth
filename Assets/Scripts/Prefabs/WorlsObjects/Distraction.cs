@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class DistractionController : MonoBehaviour {
+public class Distraction : MonoBehaviour {
 
 	void Start () {
         StartCoroutine("destroyObject");
@@ -10,7 +10,7 @@ public class DistractionController : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Guard")) {
-            other.GetComponent<GuardController>().SetSuspicious(transform.position, false);
+            other.GetComponent<Guard>().SetSuspicious(transform.position, false);
         }
     }
 
