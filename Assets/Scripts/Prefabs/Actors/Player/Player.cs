@@ -41,31 +41,7 @@ public class Player : MonoBehaviour {
         {
             x = Input.GetAxis("Horizontal") * Time.deltaTime * 3.0f;
             transform.Translate(x, 0, z);
-
-
-            if(z > 0 && !_direction.Equals(Direction.North))
-            {
-                _direction = Direction.North;
-                _model.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            }
-
-            if(z < 0 && !_direction.Equals(Direction.South))
-            {
-                _direction = Direction.South;
-                _model.transform.localRotation = Quaternion.Euler(0, 180f, 0);
-            }
-
-            if (x > 0 && !_direction.Equals(Direction.East))
-            {
-                _direction = Direction.East;
-                _model.transform.localRotation = Quaternion.Euler(0, 90, 0);
-            }
-
-            if (x < 0 && !_direction.Equals(Direction.West))
-            {
-                _direction = Direction.West;
-                _model.transform.localRotation = Quaternion.Euler(0, 270, 0);
-            }
+            SetPlayerDirection(z, x);
         }
         else if (CameraState.Equals(PlayerCameraState.Firstperson))
         {
@@ -73,7 +49,36 @@ public class Player : MonoBehaviour {
             transform.Rotate(0, x, 0);
             transform.Translate(0, 0, z);
         }
+
+
         _animator.speed = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 ? 3f : 0f;
+    }
+
+    private void SetPlayerDirection(float z, float x)
+    {
+        if (z > 0 && !_direction.Equals(Direction.North))
+        {
+            _direction = Direction.North;
+            _model.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        if (z < 0 && !_direction.Equals(Direction.South))
+        {
+            _direction = Direction.South;
+            _model.transform.localRotation = Quaternion.Euler(0, 180f, 0);
+        }
+
+        if (x > 0 && !_direction.Equals(Direction.East))
+        {
+            _direction = Direction.East;
+            _model.transform.localRotation = Quaternion.Euler(0, 90, 0);
+        }
+
+        if (x < 0 && !_direction.Equals(Direction.West))
+        {
+            _direction = Direction.West;
+            _model.transform.localRotation = Quaternion.Euler(0, 270, 0);
+        }
     }
 
     void SetCamera()
