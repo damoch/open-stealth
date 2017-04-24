@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using Assets.Scripts.Modules;
+using Assets.Scripts.Prefabs.WorldLogic;
+using Assets.Scripts.Prefabs.WorlsObjects;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;

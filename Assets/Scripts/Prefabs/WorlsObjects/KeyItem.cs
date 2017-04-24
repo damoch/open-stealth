@@ -1,14 +1,17 @@
 ﻿
-public class KeyItem : Item
+namespace Assets.Scripts.Prefabs.WorlsObjects
 {
-    public KeyItem(string name)
+    public class KeyItem : Item
     {
-       KeyCode = name;
+        public KeyItem(string name)
+        {
+            KeyCode = name;
+        }
+
+
+        public override bool IsThisKeyCode(string code)
+        {
+            return KeyCode.Equals(code);
+        } 
     }
-
-
-    public override bool IsThisKeyCode(string code)
-    {
-        return KeyCode.Equals(code);
-    } 
 }

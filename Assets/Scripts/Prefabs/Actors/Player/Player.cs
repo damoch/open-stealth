@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Modules;
+using Assets.Scripts.Prefabs.WorlsObjects;
 using UnityEngine;
 
 namespace Assets.Scripts.Prefabs.Actors.Player

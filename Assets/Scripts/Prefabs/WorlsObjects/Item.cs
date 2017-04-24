@@ -1,10 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class Item : MonoBehaviour {
-    public string KeyCode;
+namespace Assets.Scripts.Prefabs.WorlsObjects
+{
+    public abstract class Item : MonoBehaviour {
+        public string KeyCode;
 
-    public abstract bool IsThisKeyCode(string code);
+        public abstract bool IsThisKeyCode(string code);
 
+    }
 }
