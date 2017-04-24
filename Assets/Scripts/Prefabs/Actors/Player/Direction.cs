@@ -1,7 +1,10 @@
-﻿public enum Direction
+﻿namespace Assets.Scripts.Prefabs.Actors.Player
 {
-    North, 
-    East,
-    South,
-    West
+    public enum Direction
+    {
+        North, 
+        East,
+        South,
+        West
+    }
 }

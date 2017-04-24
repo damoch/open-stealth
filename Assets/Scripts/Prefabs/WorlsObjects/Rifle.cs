@@ -1,19 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Rifle : MonoBehaviour {
+namespace Assets.Scripts.Prefabs.WorlsObjects
+{
+    public class Rifle : MonoBehaviour {
 
 
-    public GameObject Projectile;
-    public void ShootBullet()
-    {
-        var bullet = Instantiate(Projectile,
-            transform.position,
-            transform.rotation);
+        public GameObject Projectile;
+        public void ShootBullet()
+        {
+            var bullet = Instantiate(Projectile,
+                transform.position,
+                transform.rotation);
 
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
-        Destroy(bullet, 2.0f);
+            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
+            Destroy(bullet, 2.0f);
+        }
+
     }
-
 }

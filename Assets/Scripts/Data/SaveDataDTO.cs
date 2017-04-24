@@ -1,79 +1,83 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.Scripts.Prefabs.WorlsObjects;
 using UnityEngine;
 
-[Serializable]
-public class SaveDataDto
+namespace Assets.Scripts.Data
 {
-    public SaveDataDto()
+    [Serializable]
+    public class SaveDataDto
     {
-    }
-
-    public SaveDataDto (string roomName)
-    {
-        this.RoomName = roomName;
-    }
-    [SerializeField]
-    private string _roomName;
-
-    [SerializeField]
-    private Vector3 _playerPosition;
-
-    [SerializeField]
-    private Dictionary<string, bool> _itemsAquired;
-
-    [SerializeField]
-    private List<KeyItem> _items;
-
-
-    //Unity ma problem z serializacją prywatnych propertiesów, dlatego tak jest
-    public string RoomName
-    {
-        get
+        public SaveDataDto()
         {
-            return _roomName;
         }
 
-        set
+        public SaveDataDto (string roomName)
         {
-            _roomName = value;
+            this.RoomName = roomName;
         }
-    }
+        [SerializeField]
+        private string _roomName;
 
-    public Vector3 PlayerPosition
-    {
-        get
+        [SerializeField]
+        private Vector3 _playerPosition;
+
+        [SerializeField]
+        private Dictionary<string, bool> _itemsAquired;
+
+        [SerializeField]
+        private List<KeyItem> _items;
+
+
+        //Unity ma problem z serializacją prywatnych propertiesów, dlatego tak jest
+        public string RoomName
         {
-            return _playerPosition;
+            get
+            {
+                return _roomName;
+            }
+
+            set
+            {
+                _roomName = value;
+            }
         }
 
-        set
+        public Vector3 PlayerPosition
         {
-            _playerPosition = value;
-        }
-    }
+            get
+            {
+                return _playerPosition;
+            }
 
-    public Dictionary<string, bool> ItemsAquired
-    {
-        get
-        {
-            return _itemsAquired;
+            set
+            {
+                _playerPosition = value;
+            }
         }
-        set
-        {
-            _itemsAquired = value;
-        }
-    }
 
-    public List<KeyItem> Items
-    {
-        get
+        public Dictionary<string, bool> ItemsAquired
         {
-            return _items;
+            get
+            {
+                return _itemsAquired;
+            }
+            set
+            {
+                _itemsAquired = value;
+            }
         }
-        set
+
+        public List<KeyItem> Items
         {
-            _items = value;
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                _items = value;
+            }
         }
     }
 }

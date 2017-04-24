@@ -1,121 +1,126 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Prefabs.Actors.Guard;
+using Assets.Scripts.Prefabs.Actors.Player;
 using UnityEngine;
 
-public class RoomManager : MonoBehaviour {
-    static GameObject[] _guards;
-    public static GameObject Player { get; set; }
+namespace Assets.Scripts.Modules
+{
+    public class RoomManager : MonoBehaviour {
+        static GameObject[] _guards;
+        public static GameObject Player { get; set; }
 
-    public static Dictionary<string, bool> ItemsAquired { get; set; }
-    public string RoomName;
+        public static Dictionary<string, bool> ItemsAquired { get; set; }
+        public string RoomName;
 
-    void Start()
-    {
-        _guards = GameObject.FindGameObjectsWithTag("Guard");
-        Player = GameObject.FindGameObjectWithTag("PlayerObject");
-    }
-
-    public void SetGlobalAlert()
-    {
-        if (_guards != null)
+        void Start()
         {
-            foreach (GameObject guard in _guards)
+            _guards = GameObject.FindGameObjectsWithTag("Guard");
+            Player = GameObject.FindGameObjectWithTag("PlayerObject");
+        }
+
+        public void SetGlobalAlert()
+        {
+            if (_guards != null)
             {
-                var guardController = guard.GetComponent<Guard>();
-                if (!guardController.State.Equals(GuardState.Alerted))
-                    guardController.SetAlert(Player.transform.position);
-
-            }
-        }
-
-    }
-
-    public void CheckForOtherGuardsState()
-    {
-
-        if (AnyGuardSeesPlayer())
-        {
-            SetGlobalAlert();
-        }
-        else
-        {
-            SetGlobalSuspicious();
-        }
-
-    }
-    bool AnyGuardSeesPlayer()
-    {
-        if (_guards != null)
-        {
-            foreach (GameObject guard in _guards)
-            {
-                var guardController = guard.GetComponent<Guard>();
-                if (guardController.FieldOfView.PlayerInRange)
+                foreach (GameObject guard in _guards)
                 {
-                    return true;
+                    var guardController = guard.GetComponent<Guard>();
+                    if (!guardController.State.Equals(GuardState.Alerted))
+                        guardController.SetAlert(Player.transform.position);
+
+                }
+            }
+
+        }
+
+        public void CheckForOtherGuardsState()
+        {
+
+            if (AnyGuardSeesPlayer())
+            {
+                SetGlobalAlert();
+            }
+            else
+            {
+                SetGlobalSuspicious();
+            }
+
+        }
+        bool AnyGuardSeesPlayer()
+        {
+            if (_guards != null)
+            {
+                foreach (GameObject guard in _guards)
+                {
+                    var guardController = guard.GetComponent<Guard>();
+                    if (guardController.FieldOfView.PlayerInRange)
+                    {
+                        return true;
+
+                    }
+                }
+            }
+            return false;
+        }
+
+
+
+        public void SetGlobalSuspicious()
+        {
+            StartCoroutine("Evasion");
+            if (_guards != null)
+            {
+                foreach (GameObject guard in _guards)
+                {
+                    var guardController = guard.GetComponent<Guard>();
+                    if (!guardController.State.Equals(GuardState.Suspicious))
+                        guardController.SetSuspicious(Player.transform.position, true);
 
                 }
             }
         }
-        return false;
-    }
-
-
-
-    public void SetGlobalSuspicious()
-    {
-        StartCoroutine("Evasion");
-        if (_guards != null)
+        public void SetGlobalCalm()
         {
-            foreach (GameObject guard in _guards)
+            if (_guards != null)
             {
-                var guardController = guard.GetComponent<Guard>();
-                if (!guardController.State.Equals(GuardState.Suspicious))
-                    guardController.SetSuspicious(Player.transform.position, true);
+                foreach (GameObject guard in _guards)
+                {
+                    var guardController = guard.GetComponent<Guard>();
+                    if (!guardController.State.Equals(GuardState.Calm))
+                        guardController.SetCalm(guardController.NavPoint != null ? guardController.NavPoint.transform.position
+                            : guardController.transform.position);
 
+                }
             }
         }
-    }
-    public void SetGlobalCalm()
-    {
-        if (_guards != null)
+        IEnumerator Evasion()
         {
-            foreach (GameObject guard in _guards)
+            yield return new WaitForSeconds(5f);
+            if (AnyGuardSeesPlayer())
             {
-                var guardController = guard.GetComponent<Guard>();
-                if (!guardController.State.Equals(GuardState.Calm))
-                    guardController.SetCalm(guardController.NavPoint != null ? guardController.NavPoint.transform.position
-                        : guardController.transform.position);
+                SetGlobalAlert();
 
             }
+            else
+            {
+                SetGlobalCalm();
+            }
         }
-    }
-    IEnumerator Evasion()
-    {
-        yield return new WaitForSeconds(5f);
-        if (AnyGuardSeesPlayer())
+
+        public SaveDataDto GetRoomData()
         {
-            SetGlobalAlert();
-
+            var dto = new SaveDataDto();
+            dto.RoomName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            dto.PlayerPosition = Player.transform.position;
+            dto.Items = Player.GetComponent<Player>().Keys;
+            return dto;
         }
-        else
+
+        public void SetRoomData(SaveDataDto dto)
         {
-            SetGlobalCalm();
+            Player.transform.position = dto.PlayerPosition;
+            Player.GetComponent<Player>().Keys = dto.Items;
         }
-    }
-
-    public SaveDataDto GetRoomData()
-    {
-        var dto = new SaveDataDto();
-        dto.RoomName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        dto.PlayerPosition = Player.transform.position;
-        dto.Items = Player.GetComponent<Player>().Keys;
-        return dto;
-    }
-
-    public void SetRoomData(SaveDataDto dto)
-    {
-        Player.transform.position = dto.PlayerPosition;
-        Player.GetComponent<Player>().Keys = dto.Items;
     }
 }

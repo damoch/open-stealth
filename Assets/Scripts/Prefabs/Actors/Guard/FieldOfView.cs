@@ -1,23 +1,25 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class FieldOfView : MonoBehaviour {
+namespace Assets.Scripts.Prefabs.Actors.Guard
+{
+    public class FieldOfView : MonoBehaviour {
 
-    public bool PlayerInRange { get; set; }
+        public bool PlayerInRange { get; set; }
 
-    void OnTriggerEnter(Collider collider)
-    {
+        void OnTriggerEnter(Collider collider)
+        {
         
-        if(collider.tag == "PlayerObject")
-        {
-            PlayerInRange = true;
+            if(collider.tag == "PlayerObject")
+            {
+                PlayerInRange = true;
+            }
         }
-    }
-    void OnTriggerExit(Collider collider)
-    {
-        if (collider.tag == "PlayerObject")
+        void OnTriggerExit(Collider collider)
         {
-            PlayerInRange = false;
+            if (collider.tag == "PlayerObject")
+            {
+                PlayerInRange = false;
+            }
         }
     }
 }

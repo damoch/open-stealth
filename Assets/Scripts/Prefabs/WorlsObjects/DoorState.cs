@@ -1,7 +1,10 @@
-﻿public enum DoorState
+﻿namespace Assets.Scripts.Prefabs.WorlsObjects
 {
-    Closed,
-    Opened,
-    Opening,
-    Closing
+    public enum DoorState
+    {
+        Closed,
+        Opened,
+        Opening,
+        Closing
+    }
 }

@@ -1,7 +1,10 @@
 ﻿
-public enum GuardState
+namespace Assets.Scripts.Prefabs.Actors.Guard
 {
-    Calm,
-    Suspicious,
-    Alerted
+    public enum GuardState
+    {
+        Calm,
+        Suspicious,
+        Alerted
+    }
 }

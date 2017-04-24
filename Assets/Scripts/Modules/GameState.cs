@@ -1,5 +1,8 @@
-﻿public enum GameState
+﻿namespace Assets.Scripts.Modules
 {
-    Running,
-    Paused
+    public enum GameState
+    {
+        Running,
+        Paused
+    }
 }

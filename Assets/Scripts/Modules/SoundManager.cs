@@ -1,50 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SoundManager : MonoBehaviour {
+namespace Assets.Scripts.Modules
+{
+    public class SoundManager : MonoBehaviour {
 
-    public AudioSource EfxSource;
-    public AudioSource MusicSource;
-    public static SoundManager Instance = null;
+        public AudioSource EfxSource;
+        public AudioSource MusicSource;
+        public static SoundManager Instance = null;
 
-    public float LowPitchRange = .95f;
-    public float HighPitchRange = 1.05f;
+        public float LowPitchRange = .95f;
+        public float HighPitchRange = 1.05f;
     
-    void Awake()
-    {
-        if (Instance == null)
+        void Awake()
         {
-            Instance = this;
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else if (Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            DontDestroyOnLoad(gameObject);
         }
-        else if (Instance != this)
+
+        public void PlaySingle(AudioClip clip)
         {
-            Destroy(gameObject);
+            EfxSource.clip = clip;
+            EfxSource.Play();
         }
-        DontDestroyOnLoad(gameObject);
-    }
 
-    public void PlaySingle(AudioClip clip)
-    {
-        EfxSource.clip = clip;
-        EfxSource.Play();
-    }
+        public void RandomizeSfx(params AudioClip[] clips)
+        {
+            int randomIndex = Random.Range(0, clips.Length);
+            float randomPitch = Random.Range(LowPitchRange, HighPitchRange);
 
-    public void RandomizeSfx(params AudioClip[] clips)
-    {
-        int randomIndex = Random.Range(0, clips.Length);
-        float randomPitch = Random.Range(LowPitchRange, HighPitchRange);
+            EfxSource.pitch = randomPitch;
+            EfxSource.clip = clips[randomIndex];
+            EfxSource.Play();
+        }
 
-        EfxSource.pitch = randomPitch;
-        EfxSource.clip = clips[randomIndex];
-        EfxSource.Play();
-    }
-
-    public void ChangeMusic(AudioClip clip)
-    {        
-        if (MusicSource.clip == clip)
-            return;
-        MusicSource.clip = clip;
-        MusicSource.Play();
+        public void ChangeMusic(AudioClip clip)
+        {        
+            if (MusicSource.clip == clip)
+                return;
+            MusicSource.clip = clip;
+            MusicSource.Play();
+        }
     }
 }

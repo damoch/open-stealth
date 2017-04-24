@@ -1,19 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor.SceneManagement;
 #endif
-using UnityEngine;
 
-public class ExitArea : MonoBehaviour {
+namespace Assets.Scripts.Prefabs.WorlsObjects
+{
+    public class ExitArea : MonoBehaviour {
 
-    public string NextRoom { get; set; }
+        public string NextRoom { get; set; }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag.Equals("PlayerObject") && !NextRoom.Equals("SAME_ROOM"))
+        private void OnTriggerEnter(Collider other)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(NextRoom);
+            if (other.tag.Equals("PlayerObject") && !NextRoom.Equals("SAME_ROOM"))
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(NextRoom);
+            }
         }
     }
 }
